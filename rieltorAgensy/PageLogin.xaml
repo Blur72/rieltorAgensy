@@ -1,0 +1,21 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:rieltorAgensy"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="rieltorAgensy.PageLogin"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="PageLogin">
+
+    <Grid Background="White">
+        <Image Margin="756,375,756,375" Source="/Image1.png" Stretch="Fill" Opacity="0.15"/>
+        <ui:TextBox Name="txtName" HorizontalAlignment="Left" Margin="702,318,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="565" BorderThickness="0,0,0,1" SelectionChanged="txtName_SelectionChanged"/>
+        <ui:TextBlock HorizontalAlignment="Center" Margin="0,69,0,0" TextWrapping="Wrap" FontSize="63" Text="Вход" VerticalAlignment="Top"/>
+        <ui:PasswordBox Name="txtPass" HorizontalAlignment="Left" Margin="702,418,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="565" SelectionChanged="txtPass_SelectionChanged"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="702,286,0,0" TextWrapping="Wrap" FontSize="20" Text="Логин " VerticalAlignment="Top"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="702,386,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" Width="92" Text="Пароль"/>
+        <ui:Button Name="buttLog" Content="ВОЙТИ" Margin="0,853,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="38" Width="302" Foreground="White" Background="Blue" IsEnabled="False" Click="buttLog_Click"/>
+    </Grid>
+</Page>
