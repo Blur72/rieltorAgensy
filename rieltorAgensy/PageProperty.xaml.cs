@@ -278,6 +278,7 @@ namespace rieltorAgensy
                                 Changetext.Text = null;
                                 Class1.dbconnect.SaveChanges();
                                 FlightsList.ItemsSource = Class1.dbconnect.Propertiezzz.ToList();
+                                //
                             }
                             else
                             {
