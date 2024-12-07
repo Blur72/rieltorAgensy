@@ -1,0 +1,65 @@
+﻿<Page x:Class="rieltorAgensy.PageProfile"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:rieltorAgensy"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="PageProfile">
+
+    <Grid Background="White">
+        <Image Margin="754,375,754,375" Source="/Image1.png" Stretch="Fill" Opacity="0.15"/>
+        <ui:Button Content="←" Margin="51,37,0,0" VerticalAlignment="Top" Click="Button_Click_4" CornerRadius="100,100,100,100" Height="50" Width="50" Foreground="Blue" BorderBrush="Blue"/>
+        <ListView x:Name="NotificationList" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="1279,318,89,392" FontSize="16" BorderBrush="Blue" Loaded="NotificationList_Loaded">
+            <ListView.Resources>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text}" Value="Новый статус: В процессе">
+                            <Setter Property="Background" Value="LightYellow"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text}" Value="Новый статус: Закончена">
+                            <Setter Property="Background" Value="red"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text}" Value="Новый статус: Начата">
+                            <Setter Property="Background" Value="LightGreen"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding ClientID}" Width="100" Header="Код клиента"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding DealID}" Width="100" Header="Код сделки"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Date}" Width="100" Header="Дата"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Text}" Width="250" Header="Сообщение"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="1392,115,0,0" TextWrapping="Wrap" Text="Уведомления" VerticalAlignment="Top" FontSize="53"/>
+        <ui:TextBlock HorizontalAlignment="Center" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="53">
+            <Run Language="ru-ru" Text="Профиль"/>
+        </ui:TextBlock>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="145,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="53">
+            <Run Language="ru-ru" Text="Имя:"/>
+        </ui:TextBlock>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="145,353,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="53">
+            <Run Language="ru-ru" Text="Баланс:"/>
+        </ui:TextBlock>
+        <ui:TextBlock Name="txtName" HorizontalAlignment="Left" Margin="330,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="53" Width="630">
+            <Run Language="ru-ru" Text=""/>
+        </ui:TextBlock>
+        <ui:TextBlock Name="txtBalance" HorizontalAlignment="Left" Margin="354,353,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="53" Width="472">
+            <Run Language="ru-ru" Text=""/>
+        </ui:TextBlock>
+        <ui:Button Name="butBalance" Margin="145,816,0,0" VerticalAlignment="Top" Height="101" Width="349" BorderBrush="Blue" Click="butBalance_Click">
+            <ui:TextBlock TextWrapping="Wrap" Text="Пополнить" FontSize="32" Foreground="Blue"/>
+        </ui:Button>
+        <ui:TextBox Name="summ" Margin="145,733,1426,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" BorderBrush="Blue" Width="349" Height="56" BorderThickness="0,0,0,1"/>
+
+    </Grid>
+</Page>

@@ -1,0 +1,23 @@
+﻿<Page x:Class="rieltorAgensy.ClientPageMain"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:rieltorAgensy"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="ClientPageMain">
+
+    <Grid Background="White">
+        <Image Margin="756,375,756,375" Source="/Image1.png" Stretch="Fill" Opacity="0.15"/>
+        <ui:Button Content="" Height="108" Width="436" Click="Button_Click" HorizontalAlignment="Center" BorderBrush="blue" Foreground="Blue"/>
+        <ui:TextBlock HorizontalAlignment="Center" Margin="0,74,0,0" TextWrapping="Wrap" FontSize="64" Text="Клиентская панель" VerticalAlignment="Top"/>
+        <Image Margin="1640,74,150,876" Source="/Image11.png" Stretch="Fill"/>
+        <ui:Button Content="Профиль" Margin="1640,218,0,0" VerticalAlignment="Top" Height="42" Width="130" Click="Button_Click_1" Foreground="Blue" BorderBrush="Blue" />
+        <ui:Button Content="←" Margin="51,37,0,0" VerticalAlignment="Top" Click="Button_Click_4" CornerRadius="100,100,100,100" Height="50" Width="50" Foreground="Blue" BorderBrush="Blue"/>
+        <ui:TextBlock HorizontalAlignment="Center" FontSize="30" Foreground="Blue" TextWrapping="Wrap" VerticalAlignment="Center">
+            <Run Language="ru-ru" Text="Недвижимость"/>
+        </ui:TextBlock>
+    </Grid>
+</Page>

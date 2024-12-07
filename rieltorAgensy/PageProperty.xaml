@@ -10,90 +10,97 @@
       Title="PageProperty">
 
     <Grid Background="White">
-        <Image Margin="756,375,756,375" Source="/Image1.png" Stretch="Fill" Opacity="0.15"/>
-        <ui:Button Content="Добавить" Margin="248,775,0,0" VerticalAlignment="Top" Height="86" Width="178" Click="Button_Click"/>
-        <ui:Button Content="Редактировать" Margin="912,775,0,0" VerticalAlignment="Top" Height="86" Width="178" />
-        <ui:Button Content="Удалить" Margin="1568,775,0,0" VerticalAlignment="Top" Height="86" Width="178" Click="Button_Click_1"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="598*"/>
+            <ColumnDefinition Width="550*"/>
+            <ColumnDefinition Width="773*"/>
+        </Grid.ColumnDefinitions>
+        <Image Margin="158,375,756,375" Source="/Image1.png" Stretch="Fill" Opacity="0.15" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <ui:Button Content="Добавить" BorderBrush="Blue" Foreground="blue" Margin="196,868,0,0" VerticalAlignment="Top" Height="86" Width="178" Click="Button_Click"/>
+        <ui:Button Content="Редактировать" BorderBrush="Blue" Foreground="blue" Margin="314,775,0,0" VerticalAlignment="Top" Height="86" Width="178" Grid.Column="1" Click="Button_Click_2" />
+        <ui:Button Content="Удалить" BorderBrush="Blue" Foreground="blue" Margin="420,775,0,0" VerticalAlignment="Top" Height="86" Width="178" Click="Button_Click_1" Grid.Column="2"/>
         <ui:TextBlock HorizontalAlignment="Left" Margin="179,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Language="ru-ru" Text="Адрес"/>
         </ui:TextBlock>
-        <ui:TextBox Name="adres" HorizontalAlignment="Left" Margin="179,121,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+        <ui:TextBox Name="adres" BorderBrush="Blue" HorizontalAlignment="Left" Margin="179,121,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
         <ui:TextBlock HorizontalAlignment="Left" Margin="179,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Language="ru-ru" Text="Вид недвижимости"/>
         </ui:TextBlock>
-        <ui:TextBox Name="TypeProp" HorizontalAlignment="Left" Margin="179,188,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
-        <ui:TextBlock HorizontalAlignment="Left" Margin="179,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <ui:TextBox Name="TypeProp" BorderBrush="Blue" HorizontalAlignment="Left" Margin="179,188,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120" TextChanged="TypeProp_TextChanged"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,310,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Language="ru-ru" Text="Цена"/>
         </ui:TextBlock>
-        <ui:TextBox Name="priceText" HorizontalAlignment="Left" Margin="179,257,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
-        <ui:TextBlock HorizontalAlignment="Left" Margin="179,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <ui:TextBox Name="priceText" BorderBrush="Blue" HorizontalAlignment="Left" Margin="179,331,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,452,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Language="ru-ru" Text="Размер кв.м"/>
         </ui:TextBlock>
-        <ui:TextBox Name="area" HorizontalAlignment="Left" Margin="179,330,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+        <ui:TextBox Name="area" BorderBrush="Blue" HorizontalAlignment="Left" Margin="179,484,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
         <ui:TextBlock HorizontalAlignment="Left" Margin="179,385,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Run Text="Кол-во сп"/>
-            <Run Language="ru-ru" Text="альных комнат"/>
-            <LineBreak/>
+            <Run Text="Кол-во спальных комнат"/>
             <Run Language="ru-ru"/>
         </ui:TextBlock>
-        <ui:TextBox Name="numBed" HorizontalAlignment="Left" Margin="179,406,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
-        <ui:TextBlock HorizontalAlignment="Left" Margin="179,463,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <ui:TextBox Name="numBed" BorderBrush="Blue" HorizontalAlignment="Left" Margin="179,406,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,537,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Language="ru-ru" Text="Кол-во ванных комнат"/>
         </ui:TextBlock>
-        <ui:TextBox Name="numBath" HorizontalAlignment="Left" Margin="179,484,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
-        <ui:TextBlock HorizontalAlignment="Left" Margin="179,538,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <ui:TextBox Name="numBath" BorderBrush="Blue" HorizontalAlignment="Left" Margin="179,558,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,612,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Language="ru-ru" Text="Описание"/>
         </ui:TextBlock>
-        <ui:TextBox Name="descText" HorizontalAlignment="Left" Margin="179,559,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
-        <ui:TextBlock HorizontalAlignment="Left" Margin="179,609,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <ui:TextBox Name="descText" BorderBrush="Blue" HorizontalAlignment="Left" Margin="179,633,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,683,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Language="ru-ru" Text="Код статуса недвижимости"/>
         </ui:TextBlock>
-        <ui:TextBox Name="idStatus" HorizontalAlignment="Left" Margin="179,630,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
-        <ui:TextBlock HorizontalAlignment="Left" Margin="179,680,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <ui:TextBox Name="idStatus" BorderBrush="Blue" IsReadOnly="True" HorizontalAlignment="Left" Margin="179,704,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,754,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Language="ru-ru" Text="Код вида недвижимости"/>
             <LineBreak/>
             <Run Language="ru-ru"/>
         </ui:TextBlock>
-        <ui:TextBox Name="idType" HorizontalAlignment="Left" Margin="179,701,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
-        <ListView x:Name="FlightsList" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="826,40,94,679" FontSize="16" BorderBrush="Blue" Loaded="FlightsList_Loaded">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Address}" Width="150" Header="Адрес"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding PropertyType}" Width="150" Header="Вид недвижимости"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Price}" Width="155" Header="Цена"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Size}" Width="120" Header="Размер"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Bedrooms}" Width="160" Header="Кол-во спален"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Bathrooms}" Width="120" Header="Кол-во ванных"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Description}" Width="140" Header="Описание"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <TextBox Name="Changetext" HorizontalAlignment="Left" Margin="826,954,0,0" TextWrapping="Wrap" BorderBrush="Blue" Text="" VerticalAlignment="Top" Width="195" FontSize="30" Height="58"/>
-        <ui:TextBlock HorizontalAlignment="Left" Margin="788,876,0,0" TextWrapping="Wrap" FontSize="30" VerticalAlignment="Top">
+        <ui:TextBox Name="idType" BorderBrush="Blue" IsReadOnly="True" HorizontalAlignment="Left" Margin="179,775,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+
+        <TextBox Name="Changetext" HorizontalAlignment="Left" Margin="228,954,0,0" TextWrapping="Wrap" BorderBrush="Blue" Text="" VerticalAlignment="Top" Width="195" FontSize="30" Height="58" Grid.Column="1"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="190,876,0,0" TextWrapping="Wrap" FontSize="30" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2">
             <Run Language="ru-ru" Text="Введите изменяемое значение"/>
         </ui:TextBlock>
-        <ComboBox x:Name="EditCB" HorizontalAlignment="Left" Margin="788,968,0,0" BorderBrush="Blue" VerticalAlignment="Top" FontSize="30" Height="30" Width="30">
+        <ComboBox x:Name="EditCB" HorizontalAlignment="Left" Margin="190,968,0,0" BorderBrush="Blue" VerticalAlignment="Top" FontSize="30" Height="30" Width="30" Grid.Column="1">
             <ComboBoxItem Content="Адрес"/>
             <ComboBoxItem Content="Вид недвижимости"/>
+            <ComboBoxItem Content="Статус недвижимости"/>
             <ComboBoxItem Content="Цена"/>
             <ComboBoxItem Content="Размер"/>
             <ComboBoxItem Content="Кол-во спален"/>
             <ComboBoxItem Content="Кол-во ванных"/>
             <ComboBoxItem Content="Описание"/>
-            <ComboBoxItem Content="Код статуса недвижимости"/>
-            <ComboBoxItem Content="Код вида недвижимости"/>
         </ComboBox>
-        <ui:TextBlock HorizontalAlignment="Left" Margin="496,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Run Language="ru-ru" Text="Фильтровать по:"/>
+        <TextBlock Text="Тип недвижимости:" Margin="24,221,380,842" Grid.Column="1"/>
+
+        <TextBlock Text="Статус недвижимости:" Margin="34,385,364,665" Grid.Column="1"/>
+        <ComboBox x:Name="PropertyTypeComboBox" BorderBrush="Blue" Width="200" Grid.Column="1" Margin="10,257,340,0" VerticalAlignment="Top" SelectionChanged="PropertyTypeComboBox_SelectionChanged"/>
+        <ComboBox x:Name="PropertyStatusComboBox" BorderBrush="Blue" Width="200" Margin="10,434,340,0" VerticalAlignment="Top" Grid.Column="1" SelectionChanged="PropertyStatusComboBox_SelectionChanged"/>
+
+        <ListView x:Name="FlightsList" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="228,40,10,679" FontSize="16" BorderBrush="Blue" Grid.Column="1" Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Address}" Width="100" Header="Адрес"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding PropertyType}" Width="150" Header="Вид недвижимости"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Price}" Width="90" Header="Цена"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Size}" Width="90" Header="Размер"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Bedrooms}" Width="130" Header="Кол-во спален"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Bathrooms}" Width="120" Header="Кол-во ванных"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Description}" Width="140" Header="Описание"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding PropertyStatusID}" Width="120" Header="Код статуса"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding PropertyTypeID}" Width="140" Header="Код вида"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Name="filterReset" Grid.Column="1" BorderBrush="Blue" Foreground="Blue" Content="Сбросить фильтры" Margin="38,508,0,0" VerticalAlignment="Top" Click="filterReset_Click"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195">
+            <Run Language="ru-ru" Text="Статус недвижимости"/>
         </ui:TextBlock>
-        <ComboBox x:Name="Filter" HorizontalAlignment="Left" Margin="600,33,0,0" BorderBrush="Blue" VerticalAlignment="Top" FontSize="30" Height="30" Width="30">
-            <ComboBoxItem Content="Цена"/>
-            <ComboBoxItem Content="Размер"/>
-        </ComboBox>
-        <ComboBox x:Name="FilterType" HorizontalAlignment="Left" Margin="642,33,0,0" BorderBrush="Blue" VerticalAlignment="Top" FontSize="30" Height="30" Width="30">
-            <ComboBoxItem Content="Возрастание"/>
-            <ComboBoxItem Content="Убывание"/>
-        </ComboBox>
-        <ui:Button Name="buttFilter" Content="Фильтровать" Margin="541,174,0,0"  BorderBrush="Blue" VerticalAlignment="Top"/>
+        <ui:TextBox x:Name="Status" BorderBrush="Blue" HorizontalAlignment="Left" Margin="179,259,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120" TextChanged="Status_TextChanged"/>
+        <ui:Button Grid.Column="2" Content="Экспортировать" Margin="350,575,0,0" VerticalAlignment="Top" Height="45" Width="249" Foreground="Blue" BorderBrush="Blue" Click="Button_Click_3"/>
+        <ui:Button Content="←" Margin="51,37,0,0" VerticalAlignment="Top" CornerRadius="100,100,100,100" Height="50" Width="50" Foreground="Blue" BorderBrush="Blue" Click="Button_Click_4"/>
     </Grid>
+
 </Page>

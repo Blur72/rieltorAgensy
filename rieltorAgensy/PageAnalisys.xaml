@@ -1,0 +1,44 @@
+﻿<Page x:Class="rieltorAgensy.PageAnalisys"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:rieltorAgensy"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="PageAnalisys">
+
+    <Grid Background="White">
+        <Image Margin="756,375,756,375" Source="/Image1.png" Stretch="Fill" Opacity="0.15"/>
+        <ui:TextBlock HorizontalAlignment="Center" Margin="0,44,0,0" TextWrapping="Wrap" FontSize="64" VerticalAlignment="Top">
+            <Run Language="ru-ru" Text="Анализ доходов и расходов"/>
+        </ui:TextBlock>
+        <ListView x:Name="DealList" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="488,169,488,375" FontSize="16" BorderBrush="Blue" Loaded="DealList_Loaded">
+            <ListView.Resources>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding TransactionType}" Value="Покупка">
+                            <Setter Property="Background" Value="LightGreen"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding TransactionType}" Value="Продажа">
+                            <Setter Property="Background" Value="Red"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding TransactionID}" Width="200" Header="Код транзакции"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ClientID}" Width="200" Header="Код клиента"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding TransactionAmount}" Width="238" Header="Сумма транзакции"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding TransactionType}" Width="300" Header="Тип транзакции"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ui:Button Content="Экспортировать" Margin="0,815,0,0" Height="62" Width="248" VerticalAlignment="Top" BorderBrush="Blue" Foreground="Blue" Click="Button_Click_3" HorizontalAlignment="Center"/>
+        <ui:Button Content="←" Margin="51,37,0,0" VerticalAlignment="Top" Click="Button_Click_4" CornerRadius="100,100,100,100" Height="50" Width="50" Foreground="Blue" BorderBrush="Blue"/>
+    </Grid>
+</Page>

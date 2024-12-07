@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,25 +17,26 @@ using System.Windows.Shapes;
 namespace rieltorAgensy
 {
     /// <summary>
-    /// Логика взаимодействия для PageMain.xaml
+    /// Логика взаимодействия для ClientPageMain.xaml
     /// </summary>
-    public partial class PageMain : Page
+    public partial class ClientPageMain : Page
     {
-        int clientid;
-        public PageMain(int clientid)
+        string firstname;
+        public ClientPageMain(string FIRSTNAME)
         {
             InitializeComponent();
-            this.clientid = clientid;
+            this.firstname = FIRSTNAME;
+            var tempClient = Class1.dbconnect.Clients.FirstOrDefault(cli => cli.FirstName == firstname);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Instance.Mainframe.Navigate(new PageProperty(clientid));
+            MainWindow.Instance.Mainframe.Navigate(new ClientPageProperty(firstname));
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MainWindow.Instance.Mainframe.Navigate(new PageDeals());
+            MainWindow.Instance.Mainframe.Navigate(new PageProfile(firstname));
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
@@ -42,14 +44,5 @@ namespace rieltorAgensy
             MainWindow.Instance.Mainframe.GoBack();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            MainWindow.Instance.Mainframe.Navigate(new PageReports());
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            MainWindow.Instance.Mainframe.Navigate(new PageAnalisys());
-        }
     }
 }

@@ -19,6 +19,8 @@ namespace rieltorAgensy
         {
             this.Contacts = new HashSet<Contacts>();
             this.Deals = new HashSet<Deals>();
+            this.Notifications = new HashSet<Notifications>();
+            this.Transactions = new HashSet<Transactions>();
         }
     
         public int ClientID { get; set; }
@@ -33,5 +35,9 @@ namespace rieltorAgensy
         public virtual ICollection<Contacts> Contacts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Deals> Deals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Notifications> Notifications { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transactions> Transactions { get; set; }
     }
 }

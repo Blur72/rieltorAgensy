@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using QRCoder;
 
 namespace rieltorAgensy
 {
@@ -23,6 +27,29 @@ namespace rieltorAgensy
         public PageRegistration()
         {
             InitializeComponent();
+            QRCode.Source = GenerateQrCodeBitmapImage("https://yandex.ru/images/search?from=tabbar&img_url=https%3A%2F%2Fcdn1.ozone.ru%2Fs3%2Fmultimedia-1-7%2F7005371875.jpg&lr=43&pos=0&rpt=simage&text=%D0%BA%D0%B8%D1%80%D0%B8%D0%B5%D1%88%D0%BA%D0%B8");
+        }
+
+        private BitmapImage GenerateQrCodeBitmapImage(string text)
+        {
+            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+            {
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(text, QRCodeGenerator.ECCLevel.Q); using (QRCode qrCode = new QRCode(qrCodeData))
+                {
+                    using (Bitmap qrBitmap = qrCode.GetGraphic(20))
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            qrBitmap.Save(ms, ImageFormat.Png);
+                            ms.Position = 0;
+                            BitmapImage bitmapImage = new BitmapImage(); bitmapImage.BeginInit();
+                            bitmapImage.CacheOption = BitmapCacheOption.OnLoad; bitmapImage.StreamSource = ms;
+                            bitmapImage.EndInit();
+                            return bitmapImage;
+                        }
+                    }
+                }
+            }
         }
 
         private void txtName_SelectionChanged(object sender, RoutedEventArgs e)
@@ -74,9 +101,9 @@ namespace rieltorAgensy
                 var tempClient = new Clients()
                 {
                     FirstName = txtName.Text,
-                    LastName = txtPass.Text,
+                    LastName = txtPass.Password,
                     PhoneNumber = txtPhone.Text,
-                    Email = txtEmail.Text,
+                    Email = txtEmail.Text + pochta.Text,
                     Address = txtAdres.Text,
                     Balance = 0
                 };
@@ -90,5 +117,7 @@ namespace rieltorAgensy
         {
             MainWindow.Instance.Mainframe.Navigate(new PageLogin());
         }
+
+
     }
 }

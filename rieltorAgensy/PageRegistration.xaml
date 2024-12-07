@@ -11,9 +11,9 @@
 
     <Grid Background="White">
         <Image Margin="756,375,756,375" Source="/Image1.png" Stretch="Fill" Opacity="0.15"/>
-        <ui:TextBox Name="txtName" HorizontalAlignment="Left" Margin="702,318,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="565" BorderThickness="0,0,0,1" SelectionChanged="txtName_SelectionChanged"/>
+        <ui:TextBox Name="txtName" BorderBrush="Blue" HorizontalAlignment="Left" Margin="702,318,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="565" BorderThickness="0,0,0,1" SelectionChanged="txtName_SelectionChanged"/>
         <ui:TextBlock HorizontalAlignment="Center" Margin="0,69,0,0" TextWrapping="Wrap" FontSize="63" Text="Быстрая регистрация" VerticalAlignment="Top"/>
-        <ui:PasswordBox Name="txtPass" HorizontalAlignment="Left" Margin="702,418,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="565" SelectionChanged="txtPass_SelectionChanged"/>
+        <ui:PasswordBox Name="txtPass" BorderBrush="Blue" HorizontalAlignment="Left" Margin="702,418,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="565" SelectionChanged="txtPass_SelectionChanged" BorderThickness="0,0,0,1"/>
         <CheckBox Name="Checkboxik" Content="Я соглашаюсь с правилами использования риелторского агентства АВЕНЮ" Margin="0,800,0,0" VerticalAlignment="Top" BorderBrush="Blue" HorizontalAlignment="Center" Width="614" Checked="Checkboxik_Checked"/>
         <ui:TextBlock HorizontalAlignment="Left" Margin="702,286,0,0" TextWrapping="Wrap" FontSize="20" Text="Логин " VerticalAlignment="Top"/>
         <ui:TextBlock HorizontalAlignment="Left" Margin="702,386,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" Width="92" Text="Пароль"/>
@@ -24,14 +24,19 @@
         <ui:TextBlock HorizontalAlignment="Left" Margin="702,486,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" Width="430">
             <Run Language="ru-ru" Text="Номер телефона (необязательно)"/>
         </ui:TextBlock>
-        <ui:TextBox Name="txtPhone" HorizontalAlignment="Left" Margin="702,518,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="565"/>
+        <ui:TextBox Name="txtPhone" BorderBrush="Blue" HorizontalAlignment="Left" Margin="702,518,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="565" BorderThickness="0,0,0,1"/>
         <ui:TextBlock HorizontalAlignment="Left" Margin="702,586,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" Width="430">
             <Run Language="ru-ru" Text="Email (необязательно)"/>
         </ui:TextBlock>
         <ui:TextBlock HorizontalAlignment="Left" Margin="702,686,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" Width="430">
             <Run Language="ru-ru" Text="Адрес проживания (необязательно)"/>
         </ui:TextBlock>
-        <ui:TextBox Name="txtEmail" HorizontalAlignment="Left" Margin="702,618,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="565"/>
-        <ui:TextBox Name="txtAdres" HorizontalAlignment="Left" Margin="702,718,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="565"/>
+        <ui:TextBox Name="txtEmail" BorderBrush="Blue" HorizontalAlignment="Left" Margin="702,618,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="565" BorderThickness="0,0,0,1"/>
+        <ui:TextBox Name="txtAdres" BorderBrush="Blue" HorizontalAlignment="Left" Margin="702,718,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="565" BorderThickness="0,0,0,1"/>
+        <Image x:Name="QRCode" HorizontalAlignment="Left" Height="303" Margin="1392,386,0,0" VerticalAlignment="Top" Width="352"/>
+        <ComboBox Name="pochta" Margin="510,618,1240,0" Foreground="Blue" VerticalAlignment="Top" Width="170" Height="36" BorderBrush="Blue">
+            <ComboBoxItem Content="@mail.ru"/>
+            <ComboBoxItem Content="@gmail.com"/>
+        </ComboBox>
     </Grid>
 </Page>

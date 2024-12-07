@@ -17,5 +17,7 @@
         <ui:TextBlock HorizontalAlignment="Left" Margin="702,286,0,0" TextWrapping="Wrap" FontSize="20" Text="Логин " VerticalAlignment="Top"/>
         <ui:TextBlock HorizontalAlignment="Left" Margin="702,386,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" Width="92" Text="Пароль"/>
         <ui:Button Name="buttLog" Content="ВОЙТИ" Margin="0,853,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="38" Width="302" Foreground="White" Background="Blue" IsEnabled="False" Click="buttLog_Click"/>
+        <CheckBox Name="AdminCheck" Content="Войти как админ" Margin="702,493,0,0" BorderBrush="Blue" VerticalAlignment="Top" Width="534"/>
+        <Image x:Name="QRCode" HorizontalAlignment="Left" Height="312" Margin="1349,257,0,0" VerticalAlignment="Top" Width="362"/>
     </Grid>
 </Page>

@@ -17,7 +17,9 @@ namespace rieltorAgensy
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Deals()
         {
+            this.DealStages = new HashSet<DealStages>();
             this.Payments = new HashSet<Payments>();
+            this.Notifications = new HashSet<Notifications>();
         }
     
         public int DealID { get; set; }
@@ -28,12 +30,17 @@ namespace rieltorAgensy
         public Nullable<decimal> Price { get; set; }
         public string Status { get; set; }
         public Nullable<int> DealStatusID { get; set; }
+        public string DealCondition { get; set; }
     
         public virtual Clients Clients { get; set; }
         public virtual Propertiezzz Propertiezzz { get; set; }
         public virtual Realtors Realtors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DealStages> DealStages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payments> Payments { get; set; }
         public virtual DealStatuses DealStatuses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Notifications> Notifications { get; set; }
     }
 }

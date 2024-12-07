@@ -39,6 +39,17 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Status" Type="varchar" MaxLength="50" />
           <Property Name="DealStatusID" Type="int" />
+          <Property Name="DealCondition" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DealStages">
+          <Key>
+            <PropertyRef Name="StageID" />
+          </Key>
+          <Property Name="StageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DealID" Type="int" />
+          <Property Name="StageName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
         <EntityType Name="DealStatuses">
           <Key>
@@ -46,6 +57,16 @@
           </Key>
           <Property Name="DealStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StatusName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="NotificationsID" />
+          </Key>
+          <Property Name="NotificationsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="DealID" Type="int" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Text" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
@@ -70,6 +91,7 @@
           <Property Name="Description" Type="text" />
           <Property Name="PropertyStatusID" Type="int" />
           <Property Name="PropertyTypeID" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PropertyFeatures">
           <Key>
@@ -134,6 +156,15 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="TransactionsID" />
+          </Key>
+          <Property Name="TransactionsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="TransactionAmount" Type="int" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK__Contacts__Client__656C112C">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
           <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
@@ -191,6 +222,18 @@
             </Principal>
             <Dependent Role="Deals">
               <PropertyRef Name="RealtorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DealStage__DealI__3C34F16F">
+          <End Role="Deals" Type="Self.Deals" Multiplicity="0..1" />
+          <End Role="DealStages" Type="Self.DealStages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deals">
+              <PropertyRef Name="DealID" />
+            </Principal>
+            <Dependent Role="DealStages">
+              <PropertyRef Name="DealID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -254,6 +297,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Notifications_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_Deals">
+          <End Role="Deals" Type="Self.Deals" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deals">
+              <PropertyRef Name="DealID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="DealID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Properties_PropertyStatuses">
           <End Role="PropertyStatuses" Type="Self.PropertyStatuses" Multiplicity="0..1" />
           <End Role="Propertiezzz" Type="Self.Propertiezzz" Multiplicity="*" />
@@ -278,11 +345,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Transactions_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище RieltorskoeAgentsvoModelContainer">
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Deals" EntityType="Self.Deals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DealStages" EntityType="Self.DealStages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DealStatuses" EntityType="Self.DealStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Propertiezzz" EntityType="Self.Propertiezzz" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyFeatures" EntityType="Self.PropertyFeatures" Schema="dbo" store:Type="Tables" />
@@ -292,6 +373,7 @@
           <EntitySet Name="PropertyTypes" EntityType="Self.PropertyTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Realtors" EntityType="Self.Realtors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Contacts__Client__656C112C" Association="Self.FK__Contacts__Client__656C112C">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Contacts" EntitySet="Contacts" />
@@ -311,6 +393,10 @@
           <AssociationSet Name="FK__Deals__RealtorID__5165187F" Association="Self.FK__Deals__RealtorID__5165187F">
             <End Role="Realtors" EntitySet="Realtors" />
             <End Role="Deals" EntitySet="Deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DealStage__DealI__3C34F16F" Association="Self.FK__DealStage__DealI__3C34F16F">
+            <End Role="Deals" EntitySet="Deals" />
+            <End Role="DealStages" EntitySet="DealStages" />
           </AssociationSet>
           <AssociationSet Name="FK__Payments__DealID__693CA210" Association="Self.FK__Payments__DealID__693CA210">
             <End Role="Deals" EntitySet="Deals" />
@@ -332,6 +418,14 @@
             <End Role="DealStatuses" EntitySet="DealStatuses" />
             <End Role="Deals" EntitySet="Deals" />
           </AssociationSet>
+          <AssociationSet Name="FK_Notifications_Clients" Association="Self.FK_Notifications_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_Deals" Association="Self.FK_Notifications_Deals">
+            <End Role="Deals" EntitySet="Deals" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
           <AssociationSet Name="FK_Properties_PropertyStatuses" Association="Self.FK_Properties_PropertyStatuses">
             <End Role="PropertyStatuses" EntitySet="PropertyStatuses" />
             <End Role="Propertiezzz" EntitySet="Propertiezzz" />
@@ -339,6 +433,10 @@
           <AssociationSet Name="FK_Properties_PropertyTypes" Association="Self.FK_Properties_PropertyTypes">
             <End Role="PropertyTypes" EntitySet="PropertyTypes" />
             <End Role="Propertiezzz" EntitySet="Propertiezzz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Clients" Association="Self.FK_Transactions_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -359,6 +457,8 @@
           <Property Name="Balance" Type="Int32" />
           <NavigationProperty Name="Contacts" Relationship="Self.FK__Contacts__Client__656C112C" FromRole="Clients" ToRole="Contacts" />
           <NavigationProperty Name="Deals" Relationship="Self.FK__Deals__ClientID__5070F446" FromRole="Clients" ToRole="Deals" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notifications_Clients" FromRole="Clients" ToRole="Notifications" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_Clients" FromRole="Clients" ToRole="Transactions" />
         </EntityType>
         <EntityType Name="Contacts">
           <Key>
@@ -384,11 +484,25 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DealStatusID" Type="Int32" />
+          <Property Name="DealCondition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Clients" Relationship="Self.FK__Deals__ClientID__5070F446" FromRole="Deals" ToRole="Clients" />
           <NavigationProperty Name="Propertiezzz" Relationship="Self.FK__Deals__PropertyI__4F7CD00D" FromRole="Deals" ToRole="Propertiezzz" />
           <NavigationProperty Name="Realtors" Relationship="Self.FK__Deals__RealtorID__5165187F" FromRole="Deals" ToRole="Realtors" />
+          <NavigationProperty Name="DealStages" Relationship="Self.FK__DealStage__DealI__3C34F16F" FromRole="Deals" ToRole="DealStages" />
           <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__DealID__693CA210" FromRole="Deals" ToRole="Payments" />
           <NavigationProperty Name="DealStatuses" Relationship="Self.FK_Deals_DealStatuses" FromRole="Deals" ToRole="DealStatuses" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notifications_Deals" FromRole="Deals" ToRole="Notifications" />
+        </EntityType>
+        <EntityType Name="DealStages">
+          <Key>
+            <PropertyRef Name="StageID" />
+          </Key>
+          <Property Name="StageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DealID" Type="Int32" />
+          <Property Name="StageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Deals" Relationship="Self.FK__DealStage__DealI__3C34F16F" FromRole="DealStages" ToRole="Deals" />
         </EntityType>
         <EntityType Name="DealStatuses">
           <Key>
@@ -397,6 +511,18 @@
           <Property Name="DealStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Deals" Relationship="Self.FK_Deals_DealStatuses" FromRole="DealStatuses" ToRole="Deals" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="NotificationsID" />
+          </Key>
+          <Property Name="NotificationsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="DealID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Text" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Notifications_Clients" FromRole="Notifications" ToRole="Clients" />
+          <NavigationProperty Name="Deals" Relationship="Self.FK_Notifications_Deals" FromRole="Notifications" ToRole="Deals" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
@@ -422,6 +548,7 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="PropertyStatusID" Type="Int32" />
           <Property Name="PropertyTypeID" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Deals" Relationship="Self.FK__Deals__PropertyI__4F7CD00D" FromRole="Propertiezzz" ToRole="Deals" />
           <NavigationProperty Name="PropertyFeatures" Relationship="Self.FK__PropertyF__Prope__571DF1D5" FromRole="Propertiezzz" ToRole="PropertyFeatures" />
           <NavigationProperty Name="PropertyHistory" Relationship="Self.FK__PropertyH__Prope__628FA481" FromRole="Propertiezzz" ToRole="PropertyHistory" />
@@ -499,6 +626,16 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="TransactionsID" />
+          </Key>
+          <Property Name="TransactionsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="TransactionAmount" Type="Int32" />
+          <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Transactions_Clients" FromRole="Transactions" ToRole="Clients" />
+        </EntityType>
         <Association Name="FK__Contacts__Client__656C112C">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
           <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
@@ -519,6 +656,30 @@
               <PropertyRef Name="ClientID" />
             </Principal>
             <Dependent Role="Deals">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Transactions">
               <PropertyRef Name="ClientID" />
             </Dependent>
           </ReferentialConstraint>
@@ -559,6 +720,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__DealStage__DealI__3C34F16F">
+          <End Role="Deals" Type="Self.Deals" Multiplicity="0..1" />
+          <End Role="DealStages" Type="Self.DealStages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deals">
+              <PropertyRef Name="DealID" />
+            </Principal>
+            <Dependent Role="DealStages">
+              <PropertyRef Name="DealID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Payments__DealID__693CA210">
           <End Role="Deals" Type="Self.Deals" Multiplicity="0..1" />
           <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
@@ -580,6 +753,18 @@
             </Principal>
             <Dependent Role="Deals">
               <PropertyRef Name="DealStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_Deals">
+          <End Role="Deals" Type="Self.Deals" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deals">
+              <PropertyRef Name="DealID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="DealID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -643,11 +828,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="RieltorskoeAgentsvoEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="RieltorskoeAgentsvoEntities8" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clients" EntityType="Self.Clients" />
           <EntitySet Name="Contacts" EntityType="Self.Contacts" />
           <EntitySet Name="Deals" EntityType="Self.Deals" />
+          <EntitySet Name="DealStages" EntityType="Self.DealStages" />
           <EntitySet Name="DealStatuses" EntityType="Self.DealStatuses" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" />
           <EntitySet Name="Payments" EntityType="Self.Payments" />
           <EntitySet Name="Propertiezzz" EntityType="Self.Propertiezzz" />
           <EntitySet Name="PropertyFeatures" EntityType="Self.PropertyFeatures" />
@@ -657,6 +844,7 @@
           <EntitySet Name="PropertyTypes" EntityType="Self.PropertyTypes" />
           <EntitySet Name="Realtors" EntityType="Self.Realtors" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" />
           <AssociationSet Name="FK__Contacts__Client__656C112C" Association="Self.FK__Contacts__Client__656C112C">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Contacts" EntitySet="Contacts" />
@@ -664,6 +852,14 @@
           <AssociationSet Name="FK__Deals__ClientID__5070F446" Association="Self.FK__Deals__ClientID__5070F446">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Deals" EntitySet="Deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_Clients" Association="Self.FK_Notifications_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Clients" Association="Self.FK_Transactions_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
           <AssociationSet Name="FK__Contacts__Realto__66603565" Association="Self.FK__Contacts__Realto__66603565">
             <End Role="Realtors" EntitySet="Realtors" />
@@ -677,6 +873,10 @@
             <End Role="Realtors" EntitySet="Realtors" />
             <End Role="Deals" EntitySet="Deals" />
           </AssociationSet>
+          <AssociationSet Name="FK__DealStage__DealI__3C34F16F" Association="Self.FK__DealStage__DealI__3C34F16F">
+            <End Role="Deals" EntitySet="Deals" />
+            <End Role="DealStages" EntitySet="DealStages" />
+          </AssociationSet>
           <AssociationSet Name="FK__Payments__DealID__693CA210" Association="Self.FK__Payments__DealID__693CA210">
             <End Role="Deals" EntitySet="Deals" />
             <End Role="Payments" EntitySet="Payments" />
@@ -684,6 +884,10 @@
           <AssociationSet Name="FK_Deals_DealStatuses" Association="Self.FK_Deals_DealStatuses">
             <End Role="DealStatuses" EntitySet="DealStatuses" />
             <End Role="Deals" EntitySet="Deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_Deals" Association="Self.FK_Notifications_Deals">
+            <End Role="Deals" EntitySet="Deals" />
+            <End Role="Notifications" EntitySet="Notifications" />
           </AssociationSet>
           <AssociationSet Name="FK__PropertyF__Prope__571DF1D5" Association="Self.FK__PropertyF__Prope__571DF1D5">
             <End Role="Propertiezzz" EntitySet="Propertiezzz" />
@@ -711,7 +915,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище RieltorskoeAgentsvoModelContainer" CdmEntityContainer="RieltorskoeAgentsvoEntities2">
+        <EntityContainerMapping StorageEntityContainer="Хранилище RieltorskoeAgentsvoModelContainer" CdmEntityContainer="RieltorskoeAgentsvoEntities8">
           <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="RieltorskoeAgentsvoModel.Clients">
               <MappingFragment StoreEntitySet="Clients">
@@ -747,6 +951,18 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="DealStatusID" ColumnName="DealStatusID" />
+                <ScalarProperty Name="DealCondition" ColumnName="DealCondition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DealStages">
+            <EntityTypeMapping TypeName="RieltorskoeAgentsvoModel.DealStages">
+              <MappingFragment StoreEntitySet="DealStages">
+                <ScalarProperty Name="StageID" ColumnName="StageID" />
+                <ScalarProperty Name="DealID" ColumnName="DealID" />
+                <ScalarProperty Name="StageName" ColumnName="StageName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -755,6 +971,17 @@
               <MappingFragment StoreEntitySet="DealStatuses">
                 <ScalarProperty Name="DealStatusID" ColumnName="DealStatusID" />
                 <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="RieltorskoeAgentsvoModel.Notifications">
+              <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="NotificationsID" ColumnName="NotificationsID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="DealID" ColumnName="DealID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -781,6 +1008,7 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="PropertyStatusID" ColumnName="PropertyStatusID" />
                 <ScalarProperty Name="PropertyTypeID" ColumnName="PropertyTypeID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -851,6 +1079,16 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="RieltorskoeAgentsvoModel.Transactions">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="TransactionsID" ColumnName="TransactionsID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

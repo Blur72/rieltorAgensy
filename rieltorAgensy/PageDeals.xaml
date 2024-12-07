@@ -1,0 +1,95 @@
+﻿<Page x:Class="rieltorAgensy.PageDeals"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:rieltorAgensy"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="PageDeals">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="299*"/>
+            <ColumnDefinition Width="661*"/>
+        </Grid.ColumnDefinitions>
+        <Image Margin="158,375,756,375" Source="/Image1.png" Stretch="Fill" Opacity="0.15" Grid.Column="1"/>
+        <ui:Button Content="Добавить" Margin="179,775,0,0" VerticalAlignment="Top" Height="86" Width="178" Click="Button_Click"/>
+        <ui:Button Content="Редактировать" Margin="314,775,0,0" VerticalAlignment="Top" Height="86" Width="178" Grid.Column="1" Click="Button_Click_2"  />
+        <ui:Button Content="Удалить" Margin="970,775,0,0" VerticalAlignment="Top" Height="86" Width="178" Grid.Column="1" Click="Button_Click_1"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Language="ru-ru" Text="Дата"/>
+        </ui:TextBlock>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Language="ru-ru" Text="Цена"/>
+        </ui:TextBlock>
+        <ui:TextBox Name="priceText" HorizontalAlignment="Left" Margin="179,203,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Language="ru-ru" Text="Статус"/>
+        </ui:TextBlock>
+
+        <Calendar Name="myCalendar" Margin="450,84,1185,669" Grid.ColumnSpan="2"></Calendar>
+        <TextBox Name="Changetext" HorizontalAlignment="Left" Margin="228,954,0,0" TextWrapping="Wrap" BorderBrush="Blue" Text="" VerticalAlignment="Top" Width="195" FontSize="30" Height="58" Grid.Column="1"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="190,876,0,0" TextWrapping="Wrap" FontSize="30" VerticalAlignment="Top" Grid.Column="1">
+            <Run Language="ru-ru" Text="Введите изменяемое значение"/>
+        </ui:TextBlock>
+        <ComboBox x:Name="EditCB" HorizontalAlignment="Left" Margin="190,968,0,0" BorderBrush="Blue" VerticalAlignment="Top" FontSize="30" Height="30" Width="30" Grid.Column="1" SelectionChanged="EditCB_SelectionChanged">
+            <ComboBoxItem Content="Дата"/>
+            <ComboBoxItem Content="Цена"/>
+            <ComboBoxItem Content="Статус"/>
+            <ComboBoxItem Content="Код недвижимости"/>
+            <ComboBoxItem Content="Код клиента"/>
+            <ComboBoxItem Content="Код риэлтора"/>
+        </ComboBox>
+
+        <ListView x:Name="DealList" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="228,40,134,669" FontSize="16" BorderBrush="Blue" Grid.Column="1" Loaded="DealList_Loaded">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding DealID}" Width="80" Header="Код сделки"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding DealDate}" Width="100" Header="Дата"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Price}" Width="100" Header="Цена"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Status}" Width="100" Header="Статус"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding PropertyID}" Width="150" Header="Код недвижимости"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ClientID}" Width="160" Header="Код клиента"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding RealtorID}" Width="120" Header="Код риэлтора"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding DealCondition}" Width="130" Header="Условия сделки"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,343,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Language="ru-ru" Text="Код недвижимости"/>
+        </ui:TextBlock>
+        <ui:TextBox x:Name="kodPropText" HorizontalAlignment="Left" Margin="179,381,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,441,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Language="ru-ru" Text="Код клиента"/>
+        </ui:TextBlock>
+        <ui:TextBox x:Name="kodClientText" HorizontalAlignment="Left" Margin="179,479,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,542,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Language="ru-ru" Text="Код риэлтора"/>
+        </ui:TextBlock>
+        <ui:TextBox x:Name="kodRealtorText" HorizontalAlignment="Left" Margin="179,580,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="statusText" HorizontalAlignment="Left" Margin="179,293,0,0" VerticalAlignment="Top" Width="34" Height="34" BorderBrush="Blue">
+            <ComboBoxItem Content="В процессе"/>
+            <ComboBoxItem Content="Закончена"/>
+            <ComboBoxItem Content="Начата"/>
+        </ComboBox>
+        <Calendar Name="changeCalendar" HorizontalAlignment="Left" Margin="474,792,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" BorderBrush="Blue"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="179,644,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Language="ru-ru" Text="Условия сделки"/>
+        </ui:TextBlock>
+        <ui:TextBox x:Name="DealCond" HorizontalAlignment="Left" Margin="179,682,0,0" TextWrapping="Wrap" Text="" BorderThickness="0,0,0,1" VerticalAlignment="Top" Width="120"/>
+        <ui:Button Grid.Column="1" Content="Экспортировать" Margin="939,449,0,0" Height="62" Width="249" VerticalAlignment="Top" BorderBrush="Blue" Foreground="Blue" Click="Button_Click_3"/>
+        <ui:Button Content="←" Margin="51,37,0,0" VerticalAlignment="Top" Click="Button_Click_4" CornerRadius="100,100,100,100" Height="50" Width="50" Foreground="Blue" BorderBrush="Blue">
+            <UIElement.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </UIElement.RenderTransform>
+        </ui:Button>
+
+    </Grid>
+</Page>

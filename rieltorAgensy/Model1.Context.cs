@@ -13,10 +13,10 @@ namespace rieltorAgensy
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RieltorskoeAgentsvoEntities2 : DbContext
+    public partial class RieltorskoeAgentsvoEntities8 : DbContext
     {
-        public RieltorskoeAgentsvoEntities2()
-            : base("name=RieltorskoeAgentsvoEntities2")
+        public RieltorskoeAgentsvoEntities8()
+            : base("name=RieltorskoeAgentsvoEntities8")
         {
         }
     
@@ -28,7 +28,9 @@ namespace rieltorAgensy
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<Contacts> Contacts { get; set; }
         public virtual DbSet<Deals> Deals { get; set; }
+        public virtual DbSet<DealStages> DealStages { get; set; }
         public virtual DbSet<DealStatuses> DealStatuses { get; set; }
+        public virtual DbSet<Notifications> Notifications { get; set; }
         public virtual DbSet<Payments> Payments { get; set; }
         public virtual DbSet<Propertiezzz> Propertiezzz { get; set; }
         public virtual DbSet<PropertyFeatures> PropertyFeatures { get; set; }
@@ -38,5 +40,6 @@ namespace rieltorAgensy
         public virtual DbSet<PropertyTypes> PropertyTypes { get; set; }
         public virtual DbSet<Realtors> Realtors { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Transactions> Transactions { get; set; }
     }
 }
